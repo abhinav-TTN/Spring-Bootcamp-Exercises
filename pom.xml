@@ -8,13 +8,20 @@
   <packaging>jar</packaging>
 
   <name>Spring-Bootcamp-Exercises</name>
-  <url>http://maven.apache.org</url>
+  <url>https://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
 
   <dependencies>
+
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -22,5 +29,24 @@
       <version>5.13.1</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Added my custom dependency by pushing it to github and creating a release and jar from jitpack.io -->
+    <dependency>
+      <groupId>com.github.abhinav-TTN</groupId>
+      <artifactId>Demo-remote-dependency</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.0</version>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

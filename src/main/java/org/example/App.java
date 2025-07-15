@@ -1,13 +1,12 @@
 package org.example;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import com.abhinav.utils.DoSomething;
+public class App {
+    public static void main( String[] args ) {
+
+        // Creating object of my util class
+        DoSomething doSomething = new DoSomething();
+        // Calling method from inside my custom dependency
+        doSomething.printSomethingFromDependency();
     }
 }
