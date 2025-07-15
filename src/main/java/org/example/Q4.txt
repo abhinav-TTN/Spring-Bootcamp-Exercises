@@ -1,0 +1,18 @@
+Maven provides different scopes to control when and how a dependency is used.
+There are four different scopes:-
+
+1. compile -
+The libraries directly used by our project and kept in compile scope.
+They are available at compile time and runtime and are also packed in jar.
+
+2. runtime -
+The libraries that are only needed at runtime and don't need to be compiled are kept in runtime scope.
+They are packed in jar too.
+
+3. test -
+Libraries needed only during testing phase are kept in test scope.
+They are not available at compile or runtime and are not packed in jar either.
+
+4. provided -
+Libraries provided at runtime by runtime environments are kept in provided scope.
+They are requested during runtime by project but are not handled by the project themselves.

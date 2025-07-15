@@ -1,6 +1,6 @@
 package org.example;
 
-import com.abhinav.utils.DoSomething;
+//import com.abhinav.utils.DoSomething;
 
 public class App {
     public static void main( String[] args ) {
