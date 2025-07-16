@@ -1,4 +1,4 @@
-//Q1) Write a program to demonstrate Tightly Coupled code.
+// Q3) Use @Compenent and @Autowired annotations to in Loosely Coupled code for dependency management
 package com.abhinav.base.Q3;
 
 import org.springframework.beans.factory.annotation.Autowired;

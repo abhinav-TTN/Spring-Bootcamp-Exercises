@@ -1,4 +1,4 @@
-//Q1) Write a program to demonstrate Tightly Coupled code.
+//Q2) Write a program to demonstrate Loosely Coupled code.
 package com.abhinav.base.Q2;
 
 import java.util.Scanner;
