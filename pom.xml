@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.abhinav</groupId>
-    <artifactId>dummyDemo</artifactId>
+    <artifactId>base</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dummyDemo</name>
-    <description>dummyDemo</description>
+    <name>base</name>
+    <description>base</description>
     <url/>
     <licenses>
         <license/>

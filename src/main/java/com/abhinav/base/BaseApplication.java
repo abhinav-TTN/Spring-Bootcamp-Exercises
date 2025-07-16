@@ -1,13 +1,13 @@
-package com.abhinav.dummydemo;
+package com.abhinav.base;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DummyDemoApplication {
+public class BaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DummyDemoApplication.class, args);
+        SpringApplication.run(BaseApplication.class, args);
     }
 
 }
