@@ -2,10 +2,7 @@ package com.abhinav.base.controller;
 
 import com.abhinav.base.model.Employee;
 import com.abhinav.base.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,11 @@ public class EmployeeController {
         if(id==null)
             return employeeService.getAllEmployee();
         return List.of(employeeService.getEmployeeById(id));
+    }
+
+    // Appends an employee object to the List of employees in employee service
+    @PostMapping("/")
+    public void createEmployee(@RequestBody Employee employee) {
+        employeeService.addEmployee(employee);
     }
 }
