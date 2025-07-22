@@ -37,4 +37,15 @@ public class EmployeeService {
         Employee employee = this.getEmployeeById(id);
         employeeList.remove(employee);
     }
+
+    public void updateEmployee(int id, Employee updatedEmployee) {
+        // Check if employee exists
+        Employee employee = getEmployeeById(id);
+
+        // Find index of employee in employeeList
+        int index = employeeList.indexOf(employee);
+        employeeList.set(index,
+                new Employee(id, updatedEmployee.name(), updatedEmployee.age())
+        );
+    }
 }
