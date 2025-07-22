@@ -1,7 +1,7 @@
 package com.abhinav.base.service;
 
 import com.abhinav.base.exception.ResourceNotFoundException;
-import com.abhinav.base.model.Employee;
+import com.abhinav.base.model.EmployeeDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,42 +10,41 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private final List<Employee> employeeList = new ArrayList<>();
+    private final List<EmployeeDto> employeeDtoList = new ArrayList<>();
 
     EmployeeService() {
-        employeeList.add(new Employee(1, "Abhinav", 21));
-        employeeList.add(new Employee(2, "Deepanshu", 21));
-        employeeList.add(new Employee(3, "Animesh", 21));
+        employeeDtoList.add(new EmployeeDto(1, "Abhinav", 21));
+        employeeDtoList.add(new EmployeeDto(2, "Deepanshu", 21));
+        employeeDtoList.add(new EmployeeDto(3, "Animesh", 21));
     }
 
-    public List<Employee> getAllEmployee() {
-        return employeeList;
+    public List<EmployeeDto> getAllEmployee() {
+        return employeeDtoList;
     }
 
-    public Employee getEmployeeById(int id) {
-        return employeeList.stream()
-                .filter(employee -> employee.id() == id)
+    public EmployeeDto getEmployeeById(int id) {
+        return employeeDtoList.stream()
+                .filter(employeeDto -> employeeDto.id() == id)
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("id=" + id));
     }
 
-    public void addEmployee(Employee newEmployee) {
-        employeeList.add(newEmployee);
+    public boolean addEmployee(EmployeeDto newEmployeeDto) {
+        return employeeDtoList.add(newEmployeeDto);
     }
 
-    public void deleteEmployeeById(int id) {
-        Employee employee = this.getEmployeeById(id);
-        employeeList.remove(employee);
+    public boolean deleteEmployeeById(int id) {
+        EmployeeDto employeeDTO = this.getEmployeeById(id);
+        return employeeDtoList.remove(employeeDTO);
     }
 
-    public void updateEmployee(int id, Employee updatedEmployee) {
+    public EmployeeDto updateEmployee(EmployeeDto updatedEmployeeDto) {
         // Check if employee exists
-        Employee employee = getEmployeeById(id);
+        EmployeeDto employeeDTO = getEmployeeById(updatedEmployeeDto.id());
 
         // Find index of employee in employeeList
-        int index = employeeList.indexOf(employee);
-        employeeList.set(index,
-                new Employee(id, updatedEmployee.name(), updatedEmployee.age())
-        );
+        int index = employeeDtoList.indexOf(employeeDTO);
+        employeeDtoList.set(index, updatedEmployeeDto);
+        return employeeDtoList.get(index);
     }
 }
