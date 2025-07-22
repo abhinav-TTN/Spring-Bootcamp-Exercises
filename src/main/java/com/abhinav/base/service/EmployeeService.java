@@ -1,5 +1,6 @@
 package com.abhinav.base.service;
 
+import com.abhinav.base.exception.ResourceNotFoundException;
 import com.abhinav.base.model.Employee;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,10 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(int id) {
-        for(Employee employee:employeeList) {
-            if(employee.id()==id) return employee;
-        }
-        return null;
+        return employeeList.stream()
+                .filter(employee -> employee.id()==id)
+                .findFirst()
+                .orElseThrow(()-> new ResourceNotFoundException("id="+id));
     }
 
     public void addEmployee(Employee newEmployee) {

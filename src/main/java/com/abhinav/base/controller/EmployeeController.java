@@ -1,9 +1,9 @@
 package com.abhinav.base.controller;
 
+import com.abhinav.base.exception.ResourceNotFoundException;
 import com.abhinav.base.model.Employee;
 import com.abhinav.base.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController()
@@ -12,16 +12,21 @@ public class EmployeeController {
 
     final EmployeeService employeeService;
 
+    // Constructor to inject EmployeeService bean
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    // Returns all employee at '/' and one employee at '/id'
-    @GetMapping({"/","/{id}"})
-    public List<Employee> getAllEmployees(@PathVariable(required = false) Integer id) {
-        if(id==null)
-            return employeeService.getAllEmployee();
-        return List.of(employeeService.getEmployeeById(id));
+    // Returns list of all Employees at '/'
+    @GetMapping("/")
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployee();
+    }
+
+    // Returns one employee at '/id'
+    @GetMapping("/{id}")
+    public Employee getAllEmployees(@PathVariable int id) {
+        return employeeService.getEmployeeById(id);
     }
 
     // Appends an employee object to the List of employees in employee service
