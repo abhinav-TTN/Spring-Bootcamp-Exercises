@@ -13,9 +13,9 @@ public class EmployeeService {
     private final List<Employee> employeeList = new ArrayList<>();
 
     EmployeeService() {
-        employeeList.add(new Employee(1,"Abhinav", 21));
-        employeeList.add(new Employee(2,"Deepanshu", 21));
-        employeeList.add(new Employee(3,"Animesh", 21));
+        employeeList.add(new Employee(1, "Abhinav", 21));
+        employeeList.add(new Employee(2, "Deepanshu", 21));
+        employeeList.add(new Employee(3, "Animesh", 21));
     }
 
     public List<Employee> getAllEmployee() {
@@ -24,16 +24,17 @@ public class EmployeeService {
 
     public Employee getEmployeeById(int id) {
         return employeeList.stream()
-                .filter(employee -> employee.id()==id)
+                .filter(employee -> employee.id() == id)
                 .findFirst()
-                .orElseThrow(()-> new ResourceNotFoundException("id="+id));
+                .orElseThrow(() -> new ResourceNotFoundException("id=" + id));
     }
 
     public void addEmployee(Employee newEmployee) {
         employeeList.add(newEmployee);
     }
 
-    public void deleteEmployeeById(Employee employee) {
+    public void deleteEmployeeById(int id) {
+        Employee employee = this.getEmployeeById(id);
         employeeList.remove(employee);
     }
 }

@@ -3,6 +3,7 @@ package com.abhinav.base.controller;
 import com.abhinav.base.exception.ResourceNotFoundException;
 import com.abhinav.base.model.Employee;
 import com.abhinav.base.service.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -33,5 +34,11 @@ public class EmployeeController {
     @PostMapping("/")
     public void createEmployee(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
+    }
+
+    // Delete employee by id
+    @DeleteMapping("/{id}")
+    public void deleteEmployee(@PathVariable int id) {
+        employeeService.deleteEmployeeById(id);
     }
 }
