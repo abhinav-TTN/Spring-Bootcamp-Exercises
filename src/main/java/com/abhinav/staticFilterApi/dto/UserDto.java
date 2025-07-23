@@ -1,4 +1,4 @@
-package com.abhinav.base.dto;
+package com.abhinav.staticFilterApi.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

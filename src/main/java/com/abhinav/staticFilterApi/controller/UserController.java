@@ -1,10 +1,11 @@
-package com.abhinav.base.controller;
+package com.abhinav.staticFilterApi.controller;
 
-import com.abhinav.base.dto.UserDto;
-import com.abhinav.base.service.UserService;
+import com.abhinav.staticFilterApi.dto.UserDto;
+import com.abhinav.staticFilterApi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

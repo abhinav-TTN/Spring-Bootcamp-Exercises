@@ -1,4 +1,4 @@
-package com.abhinav.base;
+package com.abhinav.staticFilterApi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

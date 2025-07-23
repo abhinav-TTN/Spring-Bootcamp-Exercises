@@ -1,6 +1,6 @@
-package com.abhinav.base.service;
+package com.abhinav.staticFilterApi.service;
 
-import com.abhinav.base.dto.UserDto;
+import com.abhinav.staticFilterApi.dto.UserDto;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
