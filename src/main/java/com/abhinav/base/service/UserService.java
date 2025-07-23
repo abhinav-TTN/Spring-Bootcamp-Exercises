@@ -23,4 +23,14 @@ public class UserService {
     public Boolean addUser(UserDto newUserDto) {
         return userDtoList.add(newUserDto);
     }
+
+    public Boolean deleteUser(Integer id) {
+        for(UserDto userDto:userDtoList) {
+            if (userDto.id().equals(id)) {
+                userDtoList.remove(userDto);
+                return true;
+            }
+        }
+        return false;
+    }
 }
