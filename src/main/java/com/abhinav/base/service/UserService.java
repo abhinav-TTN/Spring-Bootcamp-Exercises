@@ -11,9 +11,9 @@ public class UserService {
     private final List<UserDto> userDtoList = new ArrayList<>();
 
     public UserService() {
-        userDtoList.add(new UserDto(1,"Abhinav"));
-        userDtoList.add(new UserDto(2,"Ashutosh"));
-        userDtoList.add(new UserDto(3,"Ram"));
+        userDtoList.add(new UserDto(1,"Abhinav","abc@123"));
+        userDtoList.add(new UserDto(2,"Ashutosh","def@123"));
+        userDtoList.add(new UserDto(3,"Ram","ghi@123"));
     }
 
     public List<UserDto> getAllUsers() {

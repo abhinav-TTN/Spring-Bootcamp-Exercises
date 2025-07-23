@@ -18,20 +18,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    @Operation(summary = "Add a new User", description = "Provide the user id and name in the Request Body")
     @PostMapping()
-    public ResponseEntity<Boolean> createUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(userService.addUser(userDto));
+    @Operation(summary = "Add a new User", description = "Provide the user id and name in the Request Body")
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        userService.addUser(userDto);
+        return ResponseEntity.ok(userDto);
     }
 
-    @Operation(summary = "Get All Users", description = "Returns list of all users")
     @GetMapping()
+    @Operation(summary = "Get All Users", description = "Returns list of all users")
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    @Operation(summary = "Delete User", description = "Provide the id of the user to be deleted")
     @DeleteMapping()
+    @Operation(summary = "Delete User", description = "Provide the id of the user to be deleted")
     public ResponseEntity<Boolean> deleteUser(Integer id) {
         return ResponseEntity.ok(userService.deleteUser(id));
     }
