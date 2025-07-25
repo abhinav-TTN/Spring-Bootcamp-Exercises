@@ -1,5 +1,6 @@
 package com.abhinav.base.service;
 
+import com.abhinav.base.entity.Employee;
 import com.abhinav.base.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +12,7 @@ public class EmployeeService {
         this.employeeRepository=employeeRepository;
     }
 
-
+    public Employee createOrUpdateEmployee(Employee newEmployee) {
+        return employeeRepository.save(newEmployee);
+    }
 }
