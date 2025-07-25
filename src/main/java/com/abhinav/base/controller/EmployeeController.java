@@ -3,10 +3,7 @@ package com.abhinav.base.controller;
 import com.abhinav.base.entity.Employee;
 import com.abhinav.base.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -32,4 +29,9 @@ public class EmployeeController {
         return ResponseEntity.created(newResourceUri).build();
     }
 
+    @DeleteMapping()
+    public ResponseEntity<Void> deleteEmployeeByEntity(@RequestBody Employee employee) {
+        employeeService.deleteEmployee(employee);
+        return ResponseEntity.noContent().build();
+    }
 }

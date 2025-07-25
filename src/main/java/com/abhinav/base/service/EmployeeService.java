@@ -15,4 +15,8 @@ public class EmployeeService {
     public Employee createOrUpdateEmployee(Employee newEmployee) {
         return employeeRepository.save(newEmployee);
     }
+
+    public void deleteEmployee(Employee employee) {
+        employeeRepository.delete(employee);
+    }
 }
