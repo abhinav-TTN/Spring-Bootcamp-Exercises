@@ -31,4 +31,8 @@ public class EmployeeService {
     public void deleteEmployee(Employee employee) {
         employeeRepository.delete(employee);
     }
+
+    public long getEmployeeCount() {
+        return employeeRepository.count();
+    }
 }
