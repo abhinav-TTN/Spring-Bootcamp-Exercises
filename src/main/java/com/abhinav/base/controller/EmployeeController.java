@@ -22,7 +22,7 @@ public class EmployeeController {
     @GetMapping("")
     public ResponseEntity<List<Employee>> getAllEmployees(@RequestParam(defaultValue = "0", required = false) int page,
                                                           @RequestParam(defaultValue = "2", required = false) int size) {
-        return ResponseEntity.ok(employeeService.readAllEmployees(page,size).toList());
+        return ResponseEntity.ok(employeeService.readAllEmployees(page, size).toList());
     }
 
     @GetMapping("/{id}")
@@ -32,7 +32,14 @@ public class EmployeeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping()
+    @GetMapping("/search")
+    public ResponseEntity<List<Employee>> getEmployeesByName(@RequestParam String name) {
+        List<Employee> employees = employeeService.readAllEmployeesByName(name);
+
+        return employees.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(employees);
+    }
+
+    @PostMapping("")
     public ResponseEntity<Employee> postEmployee(@RequestBody Employee employee, UriComponentsBuilder uriComponentsBuilder) {
         Employee savedEmployee = employeeService.createOrUpdateEmployee(employee);
 
@@ -52,6 +59,6 @@ public class EmployeeController {
 
     @GetMapping("/count")
     public ResponseEntity<Long> getEmployeeCount() {
-        return ResponseEntity.ok(employeeService.getEmployeeCount() );
+        return ResponseEntity.ok(employeeService.getEmployeeCount());
     }
 }

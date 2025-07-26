@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,10 @@ public class EmployeeService {
     public Optional<Employee> readEmployeeBYId(Long id) {
         return employeeRepository
                 .findById(id);
+    }
+
+    public List<Employee> readAllEmployeesByName(String name) {
+        return employeeRepository.findAllByName(name);
     }
 
     public Employee createOrUpdateEmployee(Employee newEmployee) {
