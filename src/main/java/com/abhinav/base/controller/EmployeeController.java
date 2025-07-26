@@ -2,6 +2,7 @@ package com.abhinav.base.controller;
 
 import com.abhinav.base.entity.Employee;
 import com.abhinav.base.service.EmployeeService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,8 +20,9 @@ public class EmployeeController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-        return ResponseEntity.ok(employeeService.readAllEmployees());
+    public ResponseEntity<List<Employee>> getAllEmployees(@RequestParam(defaultValue = "0", required = false) int page,
+                                                          @RequestParam(defaultValue = "2", required = false) int size) {
+        return ResponseEntity.ok(employeeService.readAllEmployees(page,size).toList());
     }
 
     @GetMapping("/{id}")
@@ -50,6 +52,6 @@ public class EmployeeController {
 
     @GetMapping("/count")
     public ResponseEntity<Long> getEmployeeCount() {
-        return ResponseEntity.ok(employeeService.getEmployeeCount());
+        return ResponseEntity.ok(employeeService.getEmployeeCount() );
     }
 }

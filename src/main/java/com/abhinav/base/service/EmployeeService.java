@@ -2,9 +2,11 @@ package com.abhinav.base.service;
 
 import com.abhinav.base.entity.Employee;
 import com.abhinav.base.repository.EmployeeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,8 +17,8 @@ public class EmployeeService {
         this.employeeRepository=employeeRepository;
     }
 
-    public List<Employee> readAllEmployees() {
-        return employeeRepository.findAll();
+    public Page<Employee> readAllEmployees(int page, int size) {
+        return employeeRepository.findAll(PageRequest.of(page,size, Sort.by("age").ascending()));
     }
 
     public Optional<Employee> readEmployeeBYId(Long id) {
