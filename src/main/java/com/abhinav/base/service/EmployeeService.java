@@ -31,6 +31,14 @@ public class EmployeeService {
         return employeeRepository.findAllByName(name);
     }
 
+    public List<Employee> readEmployeesByA() {
+        return employeeRepository.findEmployeesByNameLike("A%");
+    }
+
+    public List<Employee> readEmployeesBetweenAge() {
+        return employeeRepository.findEmployeesByAgeBetween(28,32);
+    }
+
     public Employee createOrUpdateEmployee(Employee newEmployee) {
         return employeeRepository.save(newEmployee);
     }

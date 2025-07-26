@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,6 +36,20 @@ public class EmployeeController {
     @GetMapping("/search")
     public ResponseEntity<List<Employee>> getEmployeesByName(@RequestParam String name) {
         List<Employee> employees = employeeService.readAllEmployeesByName(name);
+
+        return employees.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(employees);
+    }
+
+    @GetMapping("/search/A")
+    public ResponseEntity<List<Employee>> getAllEmployeesByNameA() {
+        List<Employee> employees = employeeService.readEmployeesByA();
+
+        return employees.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(employees);
+    }
+
+    @GetMapping("/search/age")
+    public ResponseEntity<List<Employee>> getEmployeesBetween28And32() {
+        List<Employee> employees = employeeService.readEmployeesBetweenAge();
 
         return employees.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(employees);
     }

@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findAllByName(String name);
+
+    List<Employee> findEmployeesByNameLike(String query);
+
+    List<Employee> findEmployeesByAgeBetween(int ageAfter, int ageBefore);
 }
