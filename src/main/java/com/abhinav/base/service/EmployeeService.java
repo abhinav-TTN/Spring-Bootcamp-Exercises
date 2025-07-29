@@ -26,4 +26,10 @@ public class EmployeeService {
         Double averageSalary = employeeRepository.getAverageSalary();
         employeeRepository.updateEmployeeSalaryBelowAverageSalary(newSalary, averageSalary);
     }
+
+    @Transactional
+    public void deleteEmployeeWithMinimumSalary() {
+        Double minSalary = employeeRepository.getMinimumSalary();
+        employeeRepository.deleteEmployeeWithMinimumSalary(minSalary);
+    }
 }

@@ -22,8 +22,15 @@ public class EmployeeController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateEmpoyeesalary(@RequestBody Double newSalary) {
+    public ResponseEntity<Void> updateEmpoyeesalary(@RequestBody Double newSalary) {
         employeeService.updateEmployeeSalaryWithSalaryBelowAverage(newSalary);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/delete")
+    public ResponseEntity<Void> deleteEmployee() {
+        employeeService.deleteEmployeeWithMinimumSalary();
+        return ResponseEntity.ok().build();
+    }
+
 }
