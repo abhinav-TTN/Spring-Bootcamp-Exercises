@@ -1,10 +1,10 @@
 package com.abhinav.base.dto;
 
-public class FNameLNameDTO {
+public class FNameLNameDto {
     private String firstName;
     private String lastName;
 
-    public FNameLNameDTO(String firstName, String lastName) {
+    public FNameLNameDto(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

@@ -1,10 +1,9 @@
 package com.abhinav.base.controller;
 
-import com.abhinav.base.dto.FNameLNameDTO;
+import com.abhinav.base.dto.FNameLNameDto;
 import com.abhinav.base.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,13 +16,14 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-//    @GetMapping("")
-//    public ResponseEntity<Object[]> getEmpAllBySalary() {
-//        return ResponseEntity.ok(employeeService.employeesGreaterThanAvgSalary());
-//    }
-
     @GetMapping("")
-    public List<FNameLNameDTO> getEmpAllBySalaryNoEntity() {
+    public List<FNameLNameDto> getEmpAllBySalaryMoreThanAverage() {
         return employeeService.employeesGreaterThanAvgSalary();
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> updateEmpoyeesalary(@RequestBody Double newSalary) {
+        employeeService.updateEmployeeSalaryWithSalaryBelowAverage(newSalary);
+        return ResponseEntity.ok().build();
     }
 }
