@@ -1,6 +1,7 @@
 package com.abhinav.base.service;
 
 import com.abhinav.base.dto.FNameLNameDto;
+import com.abhinav.base.dto.FNameLNameIdDto;
 import com.abhinav.base.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,5 +32,9 @@ public class EmployeeService {
     public void deleteEmployeeWithMinimumSalary() {
         Double minSalary = employeeRepository.getMinimumSalary();
         employeeRepository.deleteEmployeeWithMinimumSalary(minSalary);
+    }
+
+    public List<FNameLNameIdDto> getEmployeesWithSurnameSingh() {
+        return employeeRepository.getEmployeesByLastNameEndingWithSingh();
     }
 }

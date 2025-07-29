@@ -1,6 +1,7 @@
 package com.abhinav.base.controller;
 
 import com.abhinav.base.dto.FNameLNameDto;
+import com.abhinav.base.dto.FNameLNameIdDto;
 import com.abhinav.base.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Void> updateEmpoyeesalary(@RequestBody Double newSalary) {
+    public ResponseEntity<Void> updateEmployeeSalary(@RequestBody Double newSalary) {
         employeeService.updateEmployeeSalaryWithSalaryBelowAverage(newSalary);
         return ResponseEntity.ok().build();
     }
@@ -31,6 +32,11 @@ public class EmployeeController {
     public ResponseEntity<Void> deleteEmployee() {
         employeeService.deleteEmployeeWithMinimumSalary();
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/singh")
+    public ResponseEntity<List<FNameLNameIdDto>> getEmployeesWithSurnameSingh() {
+        return ResponseEntity.ok(employeeService.getEmployeesWithSurnameSingh());
     }
 
 }

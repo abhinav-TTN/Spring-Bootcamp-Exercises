@@ -1,9 +1,11 @@
 package com.abhinav.base.repository;
 
 import com.abhinav.base.dto.FNameLNameDto;
+import com.abhinav.base.dto.FNameLNameIdDto;
 import com.abhinav.base.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -30,4 +32,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Query("delete from Employee where salary = :minSalary")
     void deleteEmployeeWithMinimumSalary(@Param("minSalary") Double minSalary);
+
+    @NativeQuery("select empId,empFirstName,empLastName from employeeTable where empLastName like '%Singh'")
+    List<FNameLNameIdDto> getEmployeesByLastNameEndingWithSingh();
 }
