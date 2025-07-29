@@ -37,4 +37,9 @@ public class EmployeeService {
     public List<FNameLNameIdDto> getEmployeesWithSurnameSingh() {
         return employeeRepository.getEmployeesByLastNameEndingWithSingh();
     }
+
+    @Transactional
+    public void deleteEmployeesOverAge(int age) {
+        employeeRepository.deleteEmployeesOverAge(age);
+    }
 }

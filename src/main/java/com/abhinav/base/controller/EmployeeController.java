@@ -39,4 +39,10 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getEmployeesWithSurnameSingh());
     }
 
+    @DeleteMapping("/age")
+    public ResponseEntity<Void> deleteEmpOverAge(@RequestParam int age) {
+        employeeService.deleteEmployeesOverAge(age);
+        return ResponseEntity.ok().build();
+    }
+
 }

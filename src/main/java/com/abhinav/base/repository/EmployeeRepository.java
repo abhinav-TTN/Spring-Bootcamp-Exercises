@@ -35,4 +35,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @NativeQuery("select empId,empFirstName,empLastName from employeeTable where empLastName like '%Singh'")
     List<FNameLNameIdDto> getEmployeesByLastNameEndingWithSingh();
+
+    @Modifying
+    @NativeQuery("delete from employeeTable where empAge > ?1")
+//    @Query(value = "delete from employeeTable where empAge > :age", nativeQuery = true )
+    void deleteEmployeesOverAge(int age);
 }
