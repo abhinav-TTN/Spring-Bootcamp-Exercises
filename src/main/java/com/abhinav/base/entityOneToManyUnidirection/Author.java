@@ -1,4 +1,4 @@
-package com.abhinav.base.entityOneToOne;
+package com.abhinav.base.entityOneToManyUnidirection;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,8 +21,9 @@ public class Author {
     @Embedded
     private Address address;
 
-    List<String> subjects = new ArrayList<>();
+    List<String> subjects;
 
-    @OneToOne(mappedBy = "author")
-    private Book book;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
+    private List<Book> book = new ArrayList<>();
 }
