@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan("com.abhinav.base.entityOneToManyUnidirection")
+@EntityScan("com.abhinav.base.entityOneToManyBiDirection")
 public class BaseApplication {
 
     public static void main(String[] args) {
