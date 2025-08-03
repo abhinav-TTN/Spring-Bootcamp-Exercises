@@ -10,11 +10,16 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
+import org.springframework.security.oauth2.core.OAuth2TokenType;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.server.authorization.JwtEncodingContext;
+import org.springframework.security.oauth2.server.authorization.OAuth2TokenCustomizer;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
@@ -29,11 +34,14 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.time.Duration;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
 public class AuthServerConfig {
 
+    public static final String ROLES_CLAIMS = "roles";
     UserDetailsService userDetailsService;
     PasswordEncoder passwordEncoder;
 
@@ -97,6 +105,20 @@ public class AuthServerConfig {
     @Bean
     public TokenSettings tokenSettings() {
         return TokenSettings.builder().accessTokenTimeToLive(Duration.ofMinutes(30l)).build();
+    }
+
+    @Bean
+    OAuth2TokenCustomizer<JwtEncodingContext> tokenCustomizer() {
+        return context-> {
+            if(context.getTokenType().equals(OAuth2TokenType.ACCESS_TOKEN)) {
+                Authentication principal = context.getPrincipal();
+                Set<String> authorities = principal.getAuthorities()
+                        .stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toSet());
+                context.getClaims().claim(ROLES_CLAIMS,authorities);
+            }
+        };
     }
 
     private JWKSet buildJWKSet() throws KeyStoreException, CertificateException, IOException, NoSuchAlgorithmException {
